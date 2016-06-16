@@ -5,14 +5,35 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:a4j="http://richfaces.org/a4j"
                 xmlns:rich="http://richfaces.org/rich">
-                    
+
     <ui:define name="content">
         <h2 >#{msg.pesquisaEnd}</h2>
         <h:form id="findAddr">
-                <h:panelGrid id="grid" columns="2" style="vertical-align: middle">
-                    <h:inputText styleClass="form-control" value="#{geoLocController.findAddr}" />
-                    <h:commandButton id="find" action="#{geoLocController.find()}" value="#{msg.pesquisar}" styleClass="btn"/>
-                </h:panelGrid>
+            <h:panelGrid id="grid" columns="2" style="vertical-align: middle">
+                <h:inputText styleClass="form-control" value="#{geoLocController.findAddr}" />
+                <h:commandButton id="find" action="#{geoLocController.find()}" value="#{msg.pesquisar}" styleClass="btn"/>
+            </h:panelGrid>
+            <html>
+                <head>
+                    <script src="http://maps.googleapis.com/maps/api/js"></script>
+                    <script>
+                        function initialize() {
+                            var mapProp = {
+                                center: new google.maps.LatLng(51.508742, -0.120850),
+                                zoom: 5,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            };
+                            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                        }
+                        google.maps.event.addDomListener(window, 'load', initialize);
+                    </script>
+                </head>
+
+                <body>
+                    <div id="googleMap" style="width:500px;height:380px;"></div>
+                </body>
+
+            </html>
         </h:form>
     </ui:define>
 

@@ -6,6 +6,7 @@ import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: tw
@@ -29,7 +30,11 @@ public class GeoLocController implements Serializable {
         this.findAddr = findAddr;
     }
     
-    public String find() {
-        return "";
+    public void find() {
+        //GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyDjrmE1sYuw5nE8K2pIIQ8olBelfa1bKo8");
+        //GeocodingResult[] results =  GeocodingApi.geocode(context,
+        //"1600 Amphitheatre Parkway Mountain View, CA 94043").await();
+        System.out.println("teste");
+        //return "";
     }
 }
