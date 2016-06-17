@@ -10,31 +10,26 @@
         <h2 >#{msg.pesquisaEnd}</h2>
         <h:form id="findAddr">
             <h:panelGrid id="grid" columns="2" style="vertical-align: middle">
-                <h:inputText styleClass="form-control" value="#{geoLocController.findAddr}" />
-                <h:commandButton id="find" action="#{geoLocController.find()}" value="#{msg.pesquisar}" styleClass="btn"/>
+                <h:inputText id="txtEndereco" value="#{geoLocController.findAddr}" />
+                <h:commandButton id="btnEndereco" value="#{msg.pesquisar}" styleClass="btn"/>
             </h:panelGrid>
+        </h:form>
+        <h:form>
             <html>
                 <head>
-                    <script src="http://maps.googleapis.com/maps/api/js"></script>
-                    <script>
-                        function initialize() {
-                            var mapProp = {
-                                center: new google.maps.LatLng(51.508742, -0.120850),
-                                zoom: 5,
-                                mapTypeId: google.maps.MapTypeId.ROADMAP
-                            };
-                            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-                        }
-                        google.maps.event.addDomListener(window, 'load', initialize);
-                    </script>
+                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                    <script type="text/javascript" src="mapa.js"></script>
+                    <script type="text/javascript" src="jquery.min.js"></script>
+                    <script type="text/javascript" src="jquery-ui.custom.min.js"></script>
                 </head>
-
                 <body>
-                    <div id="googleMap" style="width:500px;height:380px;"></div>
+                    <div id="mapa" style="width:500px;height:380px;"></div>
+                    <input type="hidden" id="txtLatitude" name="txtLatitude" />
+                    <input type="hidden" id="txtLongitude" name="txtLongitude" />
                 </body>
-
             </html>
         </h:form>
     </ui:define>
+    
 
 </ui:composition>
