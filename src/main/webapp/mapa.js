@@ -1,40 +1,42 @@
 var geocoder;
 var map;
 var marker;
+var latlng;
 
 function initialize() {
-    var mapProp = {
-        center: new google.maps.LatLng(51.508742, -0.120850),
+    latlng = new google.maps.LatLng(-18.8800397, -47.05878999999999);
+    var options = {
         zoom: 5,
+        center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("mapa"), mapProp);
+
+    map = new google.maps.Map(document.getElementById("mapa"), options);
+
+    geocoder = new google.maps.Geocoder();
+
+    marker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+    });
+
+    marker.setPosition(latlng);
 }
 
-function carregarNoMapa(endereco) {
-    geocoder.geocode({'address': endereco + ', Brasil', 'region': 'BR'}, function (results, status) {
-        if (status == google.maps.GeocoderStatus.OK) {
-            if (results[0]) {
-                var latitude = results[0].geometry.location.lat();
-                var longitude = results[0].geometry.location.lng();
-
-                $('#txtEndereco').val(results[0].formatted_address);
-                $('#txtLatitude').val(latitude);
-                $('#txtLongitude').val(longitude);
-
-                var location = new google.maps.LatLng(latitude, longitude);
-                marker.setPosition(location);
-                map.setCenter(location);
-                map.setZoom(16);
-            }
+function carregarNoMapa(address) {
+    geocoder.geocode({'address': address}, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Geocode was not successful for the following reason: ' + status);
         }
-    })
+    });
 }
 $(document).ready(function () {
     initialize();
-    $("#btnEndereco").click(function () {
-        if ($(this).val() != "")
-            carregarNoMapa($("#txtEndereco").val());
-    });
 });
  

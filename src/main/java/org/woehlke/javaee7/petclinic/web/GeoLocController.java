@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.primefaces.context.RequestContext;
 
 
 /**
@@ -30,11 +31,13 @@ public class GeoLocController implements Serializable {
         this.findAddr = findAddr;
     }
     
-    public void find() {
+    public void executarJS() {
         //GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyDjrmE1sYuw5nE8K2pIIQ8olBelfa1bKo8");
         //GeocodingResult[] results =  GeocodingApi.geocode(context,
         //"1600 Amphitheatre Parkway Mountain View, CA 94043").await();
-        System.out.println("teste");
+        String var = "carregarNoMapa('"+findAddr+"')";
+        //RequestContext.getCurrentInstance().execute("alert('oi')");
+        RequestContext.getCurrentInstance().execute(var);
         //return "";
     }
 }
