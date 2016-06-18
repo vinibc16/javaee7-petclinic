@@ -2,9 +2,10 @@ package org.woehlke.javaee7.petclinic.web;
 
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import javax.faces.event.ValueChangeEvent;
 import org.primefaces.context.RequestContext;
 
 
@@ -16,7 +17,7 @@ import org.primefaces.context.RequestContext;
  * To change this template use File | Settings | File Templates.
  */
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class GeoLocController implements Serializable {
 
     private static Logger log = Logger.getLogger(GeoLocController.class.getName());
@@ -32,12 +33,7 @@ public class GeoLocController implements Serializable {
     }
     
     public void executarJS() {
-        //GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyDjrmE1sYuw5nE8K2pIIQ8olBelfa1bKo8");
-        //GeocodingResult[] results =  GeocodingApi.geocode(context,
-        //"1600 Amphitheatre Parkway Mountain View, CA 94043").await();
         String var = "carregarNoMapa('"+findAddr+"')";
-        //RequestContext.getCurrentInstance().execute("alert('oi')");
         RequestContext.getCurrentInstance().execute(var);
-        //return "";
     }
 }

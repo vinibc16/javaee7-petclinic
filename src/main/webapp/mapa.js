@@ -27,16 +27,25 @@ function carregarNoMapa(address) {
     geocoder.geocode({'address': address}, function (results, status) {
         if (status === google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
-            marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
+            marker.setPosition(results[0].geometry.location);
+            map.setZoom(10);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
 }
+
 $(document).ready(function () {
     initialize();
+    
+    google.maps.event.addListener(marker, 'drag', function () {
+        geocoder.geocode({'latLng': marker.getPosition()}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    document.getElementById('findAddr:txtEndereco').value = results[0].formatted_address;
+                }
+            }
+        });
+    });
 });
  

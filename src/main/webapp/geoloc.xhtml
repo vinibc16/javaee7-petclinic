@@ -10,7 +10,7 @@
         <h2 >#{msg.pesquisaEnd}</h2>
         <h:form id="findAddr">
             <h:panelGrid id="grid" columns="2" style="vertical-align: middle">
-                <h:inputText id="txtEndereco"  value="#{geoLocController.findAddr}"  />
+                <h:inputText id="txtEndereco" size="50" value="#{geoLocController.findAddr}" autocomplete="on"/>
                 <h:commandButton id="btnEndereco" action="#{geoLocController.executarJS}" value="#{msg.pesquisar}" styleClass="btn"/>
             </h:panelGrid>
         </h:form>
@@ -23,7 +23,7 @@
                     <script type="text/javascript" src="jquery-ui.custom.min.js"></script>
                 </head>
                 <body>
-                    <div id="mapa" style="width:500px;height:380px;"></div>
+                    <div id="mapa" style="width:800px;height:300px;"></div>
                 </body>
             </html>
         </h:form>
