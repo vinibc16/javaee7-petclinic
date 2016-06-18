@@ -10,14 +10,14 @@
         <h2 >#{msg.pesquisaEnd}</h2>
         <h:form id="findAddr">
             <h:panelGrid id="grid" columns="2" style="vertical-align: middle">
-                <h:inputText id="txtEndereco" size="50" value="#{geoLocController.findAddr}" autocomplete="on"/>
+                <h:inputText id="txtEndereco" size="50" value="#{geoLocController.findAddr}" onfocus="geolocate()"/>
                 <h:commandButton id="btnEndereco" action="#{geoLocController.executarJS}" value="#{msg.pesquisar}" styleClass="btn"/>
             </h:panelGrid>
         </h:form>
         <h:form>
             <html>
                 <head>
-                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
                     <script type="text/javascript" src="mapa.js"></script>
                     <script type="text/javascript" src="jquery.min.js"></script>
                     <script type="text/javascript" src="jquery-ui.custom.min.js"></script>
